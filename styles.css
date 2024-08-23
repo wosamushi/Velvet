@@ -1,0 +1,967 @@
+@charset "uft-8";
+
+ul,
+ol{
+    list-style: none;
+}
+img{
+    max-width: 100%;
+    width: auto;
+    display: block;
+    box-sizing: border-box;
+    /* vertical-align: bottom; */
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Times, none;
+    text-decoration: none;
+    color:#0e2841;
+
+}
+
+
+
+
+body, .greyBG{
+    width: 98vw;
+    max-width: 1400px;
+    margin: 0 auto;/*左右中央に配置*/
+}
+.FV img{
+  width: 98vw;
+    margin: 0 auto;/*左右中央に配置*/
+}
+
+
+
+
+/* ページ全体 */
+body{
+    background-color: #f9f8f4;
+    display: none;
+}
+main{
+    justify-content: center;
+    display: flex;
+    margin: 0 auto;
+    padding-top: 8vw;
+    height: 100%;
+}
+@media only screen and (max-width: 768px) {
+  main{
+    padding-top: 0
+ }
+}
+
+/* ヘッダーもろもろ */
+
+
+/* ハンバーガーメニュー */
+header{
+    position: fixed;
+    width: 9vw;
+    height: 100vh;
+    z-index: 1000;
+    left: 0vw;
+    top: 0vw;
+    display: flex;
+    justify-content: center;
+}
+@media only screen and (max-width: 768px) {
+  header{
+    width: 20vw;
+    right: 0;
+    left: auto;
+  }
+}
+
+  
+  /* ここから下がハンバーガーメニューに関するCSS */
+  .nav{
+      height: 7vw;
+      width: 7vw;
+  }
+  @media only screen and (max-width: 768px) {
+    .nav{
+      height:15vw;
+      width: 15vw;
+      padding: 5vw 5vw 0 0;
+    }
+  }
+   
+  /* チェックボックスを非表示にする */
+  .drawer_hidden {
+    display: none;
+  }
+  
+  /* ハンバーガーアイコンの設置スペース */
+  .drawer_open {
+    display: flex;
+    aspect-ratio: 1/1;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 100;/* 重なり順を一番上にする */
+    cursor: pointer;
+    /* background: rgba(249,248,244,0.3); */
+  }
+  
+  /* ハンバーガーメニューのアイコン */
+  .drawer_open span,
+  .drawer_open span:before,
+  .drawer_open span:after {
+    content: '';
+    display: block;
+    height: 0.4vw;
+    width: 2.5vw;
+    border-radius: 4vw;
+    background:  #0e2841;
+    transition: 0.5s;
+    position: absolute;
+  
+  }
+.drawer_open span{
+    opacity: 1;
+}
+@media only screen and (max-width: 768px) {
+  .drawer_open span{
+    height: 1vw;
+    width: 12vw;
+  }
+}
+
+  /* 三本線の一番上の棒の位置調整 */
+  .drawer_open span:before {
+    bottom: 0.7vw;
+    background:  #9e947b;
+    opacity: 1;
+  }
+  @media only screen and (max-width: 768px) {
+    .drawer_open span:before {
+      bottom: 4.5vw;
+      height: 1vw;
+      width: 12vw;
+    }
+  }
+  
+  /* 三本線の一番下の棒の位置調整 */
+  .drawer_open span:after {
+    top: 0.7vw;
+    background: #aaa;
+  }
+  @media only screen and (max-width: 768px) {
+    .drawer_open span::after {
+      top: 4.5vw;
+      height: 1vw;
+      width: 12vw;
+    }
+  }
+  
+  /* アイコンがクリックされたら真ん中の線を透明にする */
+  #drawer_input:checked ~ .drawer_open span {
+    background: rgba(255, 255, 255, 0);
+  }
+  
+  /* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
+  #drawer_input:checked ~ .drawer_open span::before {
+    bottom: 0;
+    transform: rotate(45deg);
+  }
+  
+  #drawer_input:checked ~ .drawer_open span::after {
+    top: 0;
+    transform: rotate(-45deg);
+  }
+    
+  /* メニューのデザイン*/
+  .nav_content {
+    width: 9.5vw;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    /* メニューを画面の外に飛ばす */
+    z-index: 99;
+    background: #f9f8f4;
+    transition: .5s;
+    opacity: 0;
+    visibility: hidden;
+  }
+  @media only screen and (max-width: 768px) {
+    .nav_content{
+      width: 100vw;
+      right: 0;
+      background-color: rgba(110, 110, 110, 0.315);
+    }
+  }
+  
+  /* アイコンがクリックされたらメニューを表示 */
+  #drawer_input:checked ~ .nav_content {
+    opacity: 0.9;
+    left: 0;
+    visibility: visible;/* メニューを画面に入れる */
+  }
+  @media only screen and (max-width: 768px) {
+    #drawer_input:checked ~ .nav_content  {
+      width: 100vw;
+      opacity: 1;
+    }
+  }
+  
+
+/* header中身 */
+
+.header li{
+    /* font-family: 'Franklin Gosthic Medium', 'Arial Narrow', Arial, sans-serif; */
+    font-size: 1vw;
+    color: #0e2841;
+    line-height: 2vw;
+    transition:0.6s all ease;
+    white-space: nowrap;
+    opacity: 1;
+    padding-right: 1vw;
+    text-align: right;
+}
+.header li:hover{
+    /* background-color: rgba(225,220,214,0.9); */
+    height: 2vw;
+    font-size: 1.1vw;
+    opacity: 0.5;
+    transition:0.6s all ease;
+    text-align: right;
+
+}
+@media only screen and (max-width: 768px) {
+  .header li:hover{
+    height: auto;
+  }
+}
+
+header li:first-child{
+    margin-top: 10vw;
+}
+@media only screen and (max-width: 768px) {
+  header li:first-child{
+    margin-top: 0;
+  }
+}
+
+header ul *{
+    color: #0e2841;
+}
+@media only screen and (max-width: 768px) {
+  .nav_list{
+    margin-top: 20vw;
+    background-color:#f0f0f0f6;
+    padding: 5vw;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .nav_list li a{
+    font-size: 4vw;
+    line-height: 8vw;
+  }
+}
+
+
+
+/* 灰色BG */
+.greyBG{
+    margin-top: 7vw;
+    width: 80vw;
+    margin: 0 auto;
+    background-color: #dddddd;
+    height: 95%;
+}
+@media only screen and (max-width: 768px) {
+  .greyBG{
+    width: 98vw;
+  }
+}
+
+
+/* ファーストビュー */
+
+.FV{
+    width: 98vw;
+    position: relative;
+    /* height: 40vw; */
+    margin: 0 -9vw;
+}
+@media screen and (min-width: 1400px) {
+  .FV{
+    margin: 0;
+    width: auto;
+  }
+}
+
+.FV img{
+    width: 100vw;
+    height: 100%;
+    object-fit: cover;
+    overflow: hidden;
+    z-index: 3;
+}
+@media only screen and (max-width: 768px) {
+  #imageslide{
+    margin-right: 20vw;
+    object-position:75% 0 ;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+   .FV{
+    height: 98vh;
+    width:100%;
+    margin: 0;
+  }
+}
+
+/* タイトル文字 */
+.titlearea{
+    position: absolute;
+    margin-left: 10vw;
+}
+@media only screen and (min-width: 1400px) {
+  .titlearea{
+    margin-left: 0;
+ }
+}
+.titlearea *{
+    
+    font-family: 'Franklin Gothic heavy', sans-serif;
+    font-weight:50;
+    letter-spacing: -.3vw;
+    /* max-width: 60vw; */
+    line-height: 8.8vw;
+    /* margin-top: -9vw; */
+    display: inline-block;
+    transform   : scale(1.1, 1);
+}
+
+.titlearea h1{
+  font-size: 10vw;
+  margin-top: -9vw;
+  padding-top: 1vw;
+}
+h1 span{
+  margin-left: 3vw;
+}
+.titlechairo{
+    color: #b4a888;
+
+}
+.titlevelvet{
+    color: #18456e;
+}
+.titlegrey{
+    color: #aaa;
+}
+@media only screen and (max-width: 768px) {
+  .titlearea{
+    /* background: rgba(201, 200, 200, 0.382); */
+    margin-left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .titlearea *{
+    line-height: 10vh;
+    padding-top:0;
+ }
+}
+@media only screen and (max-width: 768px) {
+  .titlearea h1{
+    height: 100%;
+    margin-top: 15vh;
+    padding-left: 2vh;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .titlearea span{
+    /* background: rgba(201, 200, 200, 0.719); */
+    font-size: 10vh;
+    letter-spacing: 0;
+ }
+}
+@media only screen and (max-width: 768px) {
+  .titlechairo{
+    /* color: #e0cc9b; */
+    text-shadow: #433c2c 1px 1px ;
+ }
+}
+@media only screen and (max-width: 768px) {
+  .titlevelvet{
+    color: #18456e;
+    /* text-shadow: #122f4b 1px 1px ; */
+ }
+}
+@media only screen and (max-width: 768px) {
+  .titlegrey{
+    /* color: #e4e2e2; */
+    text-shadow: #6b6969 1px 1px ;
+ }
+}
+
+
+
+
+/* コンテンツ */
+.contents{
+    margin: 30vw 0;
+}
+@media only screen and (max-width: 768px) {
+  .pc *{
+    display: none;
+  }
+}
+
+
+.aboutus{
+    width: 100%;
+    /* display: flex;
+    flex-direction: column; */
+    
+}
+.openhours{
+    padding-top: 10vw;
+}
+.openhoursarea{
+  display: flex;
+  justify-content: center;
+}
+.openhours p{
+  text-align: start;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+
+h2{
+    font-size: 2.5vw;
+    font-family: 'Times New Roman', Times, none;
+    margin: 0 40%;
+    text-align: center;
+    border-bottom: #000 1px solid;
+    margin-bottom: 3vw;
+}
+.sp h2{
+    font-size: 5vw;
+    margin:0 20% ;
+    margin-bottom: 20vw;
+  }
+
+
+.aboutusp, .openhoursp{
+    text-align: center;
+    margin-bottom: 5vw;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1.7vw;
+}
+
+.sp *{
+  display: none;
+}
+@media only screen and (max-width: 768px) {
+  .sp *{
+    display: block;
+  }
+}
+.sp .openhoursarea{
+  display: flex;
+}
+.sp .aboutusp,.sp .openhoursp{
+    font-size: 3.5vw;
+    line-height: 10vw;
+}
+.sp .aboutus,.sp .openhours{
+  margin-bottom: 20vw
+}
+
+
+/* モバイル時の追加コンテンツ */
+/* システム */
+@media only screen and (max-width: 768px) {
+  .contents{
+    margin-top: 15vw;
+    margin-bottom: 0;
+  }
+}
+
+.smokeandimage{
+  position: relative;
+
+}
+.smokearea{
+  position: absolute;
+  background-image: url(../images/smoke/smoke2.png);
+  width: 30vw;
+  height: 30vw;
+  z-index: 3;
+  background-size: cover;
+}
+@media only screen and (max-width: 768px) {
+  .smokearea{
+    width: 50vw;
+    height: 50vw;
+  }
+}
+
+.smoketitle{
+  margin-top: 13vw;
+  font-size: 1.3vw;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+  border-bottom: 0.4px #000 solid;
+  width: 80%;
+  margin-left: 10%;
+}
+@media only screen and (max-width: 768px) {
+  .smoketitle{
+    font-size: 2.6vw;
+  }
+}
+
+.smokep{
+  margin-top: 1vw;
+  font-size: .8vw;
+  text-align: center;
+  font-family: 'Times New Roman', Times, serif;
+}
+@media only screen and (max-width: 768px) {
+  .smokep{
+    font-size: 2.1vw;
+    margin-top: 3vw;
+  }
+}
+
+.smokeandimage:nth-child(1) .smokearea{
+  top: 10vw;
+  left: 0vw;
+}
+@media only screen and (max-width: 768px) {
+  .smokeandimage:nth-child(1) .smokearea{
+    left: -1vw;
+  }
+}
+
+.smokeandimage:nth-child(2) .smokearea{
+  top: 10vw;
+  right: 5vw;
+}
+@media only screen and (max-width: 768px) {
+  .smokeandimage:nth-child(2) .smokearea{
+    right: -2vw;
+    top: 5vw;
+  }
+}
+.smokeandimage:nth-child(3) .smokearea{
+  top: 5vw;
+}
+@media only screen and (max-width: 768px) {
+  .smokeandimage:nth-child(3) .smokearea{
+    left: -7vw;
+    top: -16vw;
+    width: 65vw;
+    height: 50vw;
+    background-size: 65vw 50vw;
+  }
+}
+.smokeandimage:nth-child(4) .smokearea{
+  top: -15vw;
+  right: 0;
+}
+@media only screen and (max-width: 768px) {
+  .smokeandimage:nth-child(4) .smokearea{
+    top: -35vw;
+    right: -7vw;
+    width: 75vw;
+    height: 40vw;
+    background-size: 80vw 40vw;
+  }
+}
+
+.imagearea{
+  padding-left: 7vw;
+  height: 42.5vw;
+}
+@media only screen and (max-width: 768px) {
+  .imagearea{
+    /* width: 98vw; */
+    padding: 0;
+    height: auto;
+    margin-left: -9vw;
+  }
+}
+
+.imagearea img{
+  height: 100%;
+  width: 100%;
+}
+.smokeandimage:nth-child(2)
+.imagearea{
+  padding-left: 0;
+  padding-right: 7vw;
+
+}
+@media only screen and (max-width: 768px) {
+  .smokeandimage:nth-child(2)
+.imagearea{
+    padding: 0;
+  }
+}
+
+.smokeandimage:nth-child(4) .imagearea{
+  height: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* カルーセル */
+/* カルーセル全体 */
+.carousel {
+    /* 水平方向中央寄せ */
+    display: flex;
+    justify-content: center;
+    width:98vw;
+    margin-left: -9vw;
+  }
+  @media screen and (min-width: 1400px) {
+    .carousel{
+      width: auto;
+      margin-left:0;
+    }
+  }
+  
+  /* カルーセル内容 */
+  .contains {
+    /* サイズは自由に変更してください。*/
+    /* 下の.slideも同じサイズにしてください。 */
+    width: 88vw;
+    height: 40vw;
+    overflow: hidden;
+    position: relative;
+    list-style: none;
+  }
+  /* スライド切り換え用ラジオボタンは常に非表示 */
+  .slide_select {
+    display: none;
+  }
+  /* 各スライド */
+  .slide {
+    /* サイズは自由に変更してください。*/
+    /* 上の.containsも同じサイズにしてください。 */
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    /* スライドの初期値は選択されていないので透明にしておく */
+    opacity: 0;
+  }
+  .slide img{
+      width: 100%;
+  }
+  /* 前へ次へボタン */
+  .scroll_button {
+    position: absolute;
+    display: block;
+    height: 1.5vw;
+    width: 1.5vw;
+    /* 縦中央から20px上の位置 */
+    top: 50%;
+    margin-top: -1.5vw;
+    /* 上辺と右辺のみ幅5pxの枠線 */
+    border-width: 0.3vw 0.3vw 0 0;
+    border-style: solid;
+    border-color: #ddd;
+    cursor: pointer;
+    /* 普段はボタンはやや薄くする */
+    opacity: 0.5;
+    /* スライドよりも前面にする */
+    z-index: 3;
+  }
+  /* ホバー時にボタンを強調 */
+  .scroll_button:hover {
+    opacity: 1;
+  }
+  /* 前へボタン */
+  .scroll_prev {
+    left: 3vw;
+    /* 上辺と右辺の枠線を回転して"＜"にする */
+    transform: rotate(-135deg);
+  }
+  /* 次へボタン */
+  .scroll_next {
+    right: 3vw;
+    /* 上辺と右辺の枠線を回転して"＞"にする */
+    transform: rotate(45deg);
+  }
+  /* スライド移動ボタンエリア */
+  .move_controler {
+    position: absolute;
+    bottom: 3vw;
+    width: 100%;
+    text-align: center;
+  }
+  /* スライド移動の各ボタン */
+  .button_move {
+    display: inline-block;
+    height: 1vw;
+    width: 1vw;
+    margin: 0 0.2vw;
+    border-radius: 100%;
+    cursor: pointer;
+    /* 普段はやや薄くする */
+    opacity: 0.5;
+    /* スライドより前面にする */
+    z-index: 2;
+  }
+  /* ホバー時はやや明るくする */
+  .button_move:hover {
+    opacity: 0.75;
+  }
+  /* スライド移動ボタンの色 */
+  .button_move {
+    background-color: #bbb;
+  }
+  /* 1番目のスライド選択時 */
+  /* 1番目のスライドの透明度を0にして表示する */
+  .slide_select:nth-of-type(1):checked ~ .slide:nth-of-type(1) {
+    opacity: 1;
+  }
+  /* スライド移動ボタンの1個目を明るくする */
+  /* （今選択されていることが分かるように） */
+  .slide_select:nth-of-type(1):checked ~ .move_controler .button_move:nth-of-type(1) {
+    opacity: 1;
+  }
+  .slide_select:nth-of-type(2):checked ~ .slide:nth-of-type(2) {
+    opacity: 1;
+  }
+  /* 2番目のスライド選択時（1番目のスライドと同じことをする） */
+  .slide_select:nth-of-type(2):checked ~ .move_controler .button_move:nth-of-type(2) {
+    opacity: 1;
+  }
+  /* 3番目のスライド選択時 */
+  .slide_select:nth-of-type(3):checked ~ .slide:nth-of-type(3) {
+    opacity: 1;
+  }
+  .slide_select:nth-of-type(3):checked ~ .move_controler
+    .button_move:nth-of-type(3) {
+    opacity: 1;
+  }
+  /* 4番目のスライド選択時 */
+  .slide_select:nth-of-type(4):checked ~ .slide:nth-of-type(4) {
+    opacity: 1;
+  }
+  .slide_select:nth-of-type(4):checked
+    ~ .move_controler
+    .button_move:nth-of-type(4) {
+    opacity: 1;
+  }
+
+
+/* フッター */
+footer{
+  padding: 5vw 15vw;
+  height: 30vw;
+}
+@media screen and (min-width: 1500px) {
+  footer{
+    padding: 5vw 7vw;
+  }
+}@media screen and (min-width: 1800px) {
+  footer{
+    padding: 5vw 4vw;
+  }
+}
+
+.footerframe{
+    display: flex;
+    padding-top: 2vw;
+    justify-content: space-between;
+}
+
+.footerll img{
+    width: 10vw;
+}
+
+.footerl{
+    display: flex;
+    
+}
+.footerlr{
+    padding-left: 3vw;
+    /* padding-top: 1.4vw; */
+}
+.footerlr h3 span{
+    font-size: 3vw;
+    font-family: 'Franklin Gothic Heavy', sans-serif;
+    letter-spacing: -0.1vw;
+}
+.footerlr div{
+    font-size: 1.8vw;
+}
+.footerr{
+    display: flex;
+    justify-content: flex-end;
+}
+.footerr div{
+    display: flex;
+    padding-left: 5vw;
+}
+.footerr div img{
+    height: 5vw;
+    aspect-ratio: 1/1;
+    margin-left: 3vw;
+    margin-top: 2vw;
+    
+}
+#yt{
+  height:6vw;
+  padding-bottom: 1vw;
+}
+@media only screen and (max-width: 768px) {
+  #yt{
+    height:7vh;
+  }
+}
+
+.copyright{
+    text-align: center;
+    padding-bottom: 2vw;
+    font-size: 1.1vw;
+    padding-top: 5vw;
+}
+@media only screen and (max-width: 768px) {
+  footer{
+    padding: 0;
+    height: 400px;
+    background-color: #dfd6be;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .footerframe{
+    padding-top: 15vh;
+    position: relative;
+    display: flex;
+    justify-content: center;
+  }
+}
+/* @media only screen and (max-width: 768px) {
+  .footerl{
+    width: 100vw;
+    padding-left:3vh;
+  }
+} */
+@media only screen and (max-width: 768px) {
+  .footerll{
+    display: flex;
+    align-items: center;
+    padding-bottom: 4vh;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .footerlr h3 span{
+    font-size: 3vh;
+    text-shadow: none;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .footerlr .tel{
+    font-size: 2vh;
+    margin-top: 2vh;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .footerr{
+    position: absolute;
+    top: 0vw;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .footerr .sns{
+    padding: 0;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .footerr .sns img{
+    height: 7vh;
+    margin: 3vh 2vh;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .copyright{
+    margin-top: 5vh;
+    font-size: 1.5vh;
+  }
+}
+
+
+
+
+
+
+
+
+/* ローディングを初回のみ表示 */
+.loading {
+  width: 100vw;
+  height: 100vh;
+  transition: all 1s;
+  background-color: #FFF;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  opacity: 1;
+  visibility: visible;
+}
+
+.loading.is-active {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-animation {
+  width: 100vw;
+  height: 100vh;
+  transition: all 1s;
+  background-color: #9e947b;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loading-animation.is-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+
+
+
+
